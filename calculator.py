@@ -77,7 +77,8 @@ if not(inf_flag):
         
                 if not(inf_flag):
                     print('Ваш результат = ', res)    
-                continue_flag = input('Хотите продолжить с нынешним результатом или закончить работу? (Y/N) >>> ')
+                continue_flag = input('Хотите продолжить с нынешним результатом\
+                                       или закончить работу? (Y/N) >>> ')
         
         elif (continue_flag == 'N') or (continue_flag == 'n') or (inf_flag):
             break
