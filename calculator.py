@@ -1,12 +1,13 @@
 first_member = float(input('Введите первый член операции >>> ')) 
-second_member = float(input('Введите второй член операции >>> '))
 operate_simbol = input('Введите знак операции (+, -, *, /, ^) >>> ')
+second_member = float(input('Введите второй член операции >>> '))
 res = 0
 inf_flag = False
 
 '''
-Обработка операции метдом switch - case
+Обработка операции методом switch - case
 '''
+
 if operate_simbol in '+-*/^':
 
     if operate_simbol == '+':
@@ -49,8 +50,8 @@ if not(inf_flag):
     while True and not(inf_flag):
         if (continue_flag == 'Y') or (continue_flag == 'y'):
 
-            second_member = float(input('Введите второй член операции >>> '))
             operate_simbol = input('Введите знак операции (+, -, *, /, ^) >>> ')
+            second_member = float(input('Введите второй член операции >>> '))
 
             if operate_simbol in '+-/*^':
                 if operate_simbol == '+':
@@ -84,9 +85,8 @@ if not(inf_flag):
             break
         
         elif not(operate_simbol in '+-/*^'):
-            print('Введён неправильный знак операции')
             while True:
-                operate_simbol = input('Введите знак операции (+, -, *, /, ^) >>> ')
+                operate_simbol = input('Введён неверный знак операции, попробуйте снова (+, -, *, /, ^) >>> ')
                 if operate_simbol in '+-*/^':
                     break
         
