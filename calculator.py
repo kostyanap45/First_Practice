@@ -8,7 +8,7 @@ inf_flag = False
 Обработка операции методом switch - case
 '''
 
-if operate_simbol in '+-*/^':
+if (operate_simbol in '+-*/^') and (len(operate_simbol) == 1) :
 
     if operate_simbol == '+':
         res = first_member + second_member
@@ -28,7 +28,11 @@ if operate_simbol in '+-*/^':
         res = first_member * second_member
 
     elif operate_simbol == '^':
-        res = first_member ** second_member
+        if (first_member == 0) and (second_member < 0):
+            print('Ваш ответ - Бесконечность')
+            inf_flag = True
+        else:
+            res = first_member ** second_member
 
     if int(res) == res:
         res = int(res)
