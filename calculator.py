@@ -39,6 +39,8 @@ if (operate_simbol in '+-*/^') and (len(operate_simbol) == 1) :
 
     if not(inf_flag):
         print('Ваш результат = ', res)
+    else:
+        input('Нажмите любую клавишу для завершения работы')
 
 else: #обработка неправильного ввода знака операции
     print('Введён неправильный знак операции')
@@ -85,12 +87,13 @@ if not(inf_flag):
         
                 if not(inf_flag):
                     print('Ваш результат = ', res)    
-                continue_flag = input('Хотите продолжить с нынешним результатом\
-или закончить работу? (Y/N) >>> ')
-        
+                    continue_flag = input('Хотите продолжить с нынешним результатом\
+ или закончить работу? (Y/N) >>> ')
+                if inf_flag:
+                    input('Нажмите любую клавишу для завершения работы программы')
+                    break
         elif (continue_flag == 'N') or (continue_flag == 'n') or (inf_flag):
             break
-        
         elif not(operate_simbol in '+-/*^'):
             while True:
                 operate_simbol = input('Введён неверный знак операции, попробуйте снова (+, -, *, /, ^) >>> ')
