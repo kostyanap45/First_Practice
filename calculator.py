@@ -1,6 +1,30 @@
-first_member = float(input('Введите первый член операции >>> ')) 
+first_member = input('Введите первый член операции >>> ')
+while True: 
+    try:
+        first_member = float(first_member)
+    except ValueError:
+        first_member = input('Пожалуйста, введите число >>> ')
+    if type(first_member) is float:
+        break
+
 operate_simbol = input('Введите знак операции (+, -, *, /, ^) >>> ')
-second_member = float(input('Введите второй член операции >>> '))
+
+if not(operate_simbol in '+-*^/') or (len(operate_simbol) != 1): #обработка неправильного ввода знака операции
+    while True:
+        operate_simbol = input('Введён неправильный знак операции,\
+ попробуйте снова (+, -, *, /, ^) >>> ')
+        if operate_simbol in '+-*/^':
+            break
+
+
+second_member = input('Введите второй член операции >>> ')
+while True:
+    try:
+        second_member = float(second_member)
+    except ValueError:
+        second_member = input('Пожалуйста, введите число >>> ')
+    if type(second_member) is float:
+        break
 res = 0
 inf_flag = False
 
@@ -42,12 +66,6 @@ if (operate_simbol in '+-*/^') and (len(operate_simbol) == 1) :
     else:
         input('Нажмите любую клавишу для завершения работы')
 
-else: #обработка неправильного ввода знака операции
-    print('Введён неправильный знак операции')
-    while True:
-        operate_simbol = input('Введите знак операции (+, -, *, /, ^) >>> ')
-        if operate_simbol in '+-*/^':
-            break
 if not(inf_flag):
     #обработка конца/продолжения работы кода
     continue_flag = input('Хотите продолжить с нынешним результатом \
@@ -57,8 +75,22 @@ if not(inf_flag):
         if (continue_flag == 'Y') or (continue_flag == 'y'):
 
             operate_simbol = input('Введите знак операции (+, -, *, /, ^) >>> ')
-            second_member = float(input('Введите второй член операции >>> '))
 
+            if not(operate_simbol in '+-/*^') or (len(operate_simbol) != 1):
+                while True:
+                    operate_simbol = input('Введён неверный знак операции, \
+попробуйте снова (+, -, *, /, ^) >>> ')
+                    if (operate_simbol in '+-*/^') and (len(operate_simbol) == 1):
+                        break
+
+            second_member = input('Введите второй член операции >>> ')
+            while True:
+                try:
+                    second_member = float(second_member)
+                except ValueError:
+                    second_member = input('Пожалуйста, введите число >>> ')
+                if type(second_member) is float:
+                    break
             if operate_simbol in '+-/*^':
                 if operate_simbol == '+':
                     res = res + second_member
@@ -93,12 +125,6 @@ if not(inf_flag):
                     input('Нажмите любую клавишу для завершения работы программы')
                     break
         elif (continue_flag == 'N') or (continue_flag == 'n') or (inf_flag):
-            break
-        elif not(operate_simbol in '+-/*^'):
-            while True:
-                operate_simbol = input('Введён неверный знак операции, попробуйте снова (+, -, *, /, ^) >>> ')
-                if operate_simbol in '+-*/^':
-                    break
-        
+            break     
         else:
             continue_flag = input('Введён неправильный символ, попробуйте снова (Y/N) >>> ')
