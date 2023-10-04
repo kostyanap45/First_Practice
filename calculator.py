@@ -18,6 +18,7 @@ if not(operate_simbol in '+-*^/') or (len(operate_simbol) != 1): #обработ
 
 
 second_member = input('Введите второй член операции >>> ')
+
 while True:
     try:
         second_member = float(second_member)
@@ -25,9 +26,10 @@ while True:
         second_member = input('Пожалуйста, введите число >>> ')
     if type(second_member) is float:
         break
-res = 0
-inf_flag = False
 
+res = 0
+inf_flag = True
+val_flag = True
 '''
 Обработка операции методом switch - case
 '''
@@ -54,24 +56,28 @@ if (operate_simbol in '+-*/^') and (len(operate_simbol) == 1) :
     elif operate_simbol == '^':
         if (first_member == 0) and (second_member < 0):
             print('Ваш ответ - Бесконечность')
-            inf_flag = True
+            inf_flag = False
         else:
-            res = first_member ** second_member
+            try:
+                res = first_member ** second_member
+            except Exception:
+                print('Ваш компьютер не поддерживает такие вычисления')
+                val_flag = False
 
     if int(res) == res:
         res = int(res)
 
-    if not(inf_flag):
+    if inf_flag and val_flag:
         print('Ваш результат = ', res)
     else:
         input('Нажмите любую клавишу для завершения работы')
 
-if not(inf_flag):
+if inf_flag and val_flag:
     #обработка конца/продолжения работы кода
     continue_flag = input('Хотите продолжить с нынешним результатом \
 или закончить работу? (Y/N) >>> ')
 #бесконечное продолжение работы с результатом до получения команды
-    while True and not(inf_flag):
+    while True and inf_flag and val_flag:
         if (continue_flag == 'Y') or (continue_flag == 'y'):
 
             operate_simbol = input('Введите знак операции (+, -, *, /, ^) >>> ')
@@ -103,7 +109,7 @@ if not(inf_flag):
                         res = res / second_member
                     else:
                         print('Ваш ответ - Бесконечность')
-                        inf_flag = True
+                        inf_flag = False
         
                 elif operate_simbol == '*':
                     res = res * second_member
@@ -112,19 +118,23 @@ if not(inf_flag):
                     if (res == 0) and (second_member == 0):
                         print('Ваш ответ - Бесконечность')
                     else:
-                        res = res ** second_member
-        
+                        try:
+                            res = res ** second_member
+                        except Exception:
+                            print('Ваш компьютер не поддерживает \
+такие вычисления')
+                            val_flag = False
                 if int(res) == res:
                     res = int(res)
         
-                if not(inf_flag):
+                if inf_flag:
                     print('Ваш результат = ', res)    
                     continue_flag = input('Хотите продолжить с нынешним результатом\
  или закончить работу? (Y/N) >>> ')
-                if inf_flag:
+                if not(inf_flag):
                     input('Нажмите любую клавишу для завершения работы программы')
                     break
-        elif (continue_flag == 'N') or (continue_flag == 'n') or (inf_flag):
+        elif (continue_flag == 'N') or (continue_flag == 'n') or not(inf_flag) or not(val_flag):
             break     
         else:
             continue_flag = input('Введён неправильный символ, попробуйте снова (Y/N) >>> ')
